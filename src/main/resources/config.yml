@@ -1,0 +1,9 @@
+#Configuration file v1.0-Snapshot
+default-spawn: true
+#Edit custom-spawn if default-spawn is false
+#custom-spawn:
+  #x: 1.0
+  #y: 1.0
+  #z: 1.0
+#Put a string type name of the arenas you wish players are able to build on.
+arenas-build: ['BuildUHC']
