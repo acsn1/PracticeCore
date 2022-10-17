@@ -53,6 +53,12 @@ public class ArenaManager {
         //throw msg
         ChatUtils.log("Loaded all arenas successfully.");
 
+        for(Arena arenas:ARENAS){
+            if(!isReady(arenas)){
+                ChatUtils.log("&cArena " + arenas.getName() + " is not setup correctly!");
+            }
+        }
+
     }
 
     public boolean isReady(Arena arena){

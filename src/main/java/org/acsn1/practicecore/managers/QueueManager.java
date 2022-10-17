@@ -29,7 +29,6 @@ public class QueueManager {
         for(Kit kits:core.getKitManager().getKits()) {
 
             gameQueues.add(new GameQueue(new HashSet<Player>(), kits));
-            ChatUtils.log("&aLoaded Queue for " + kits.getName());
 
         }
 
