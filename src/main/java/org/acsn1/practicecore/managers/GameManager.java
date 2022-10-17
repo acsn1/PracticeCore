@@ -43,8 +43,8 @@ public class GameManager {
         Player player1 = game.getGamePlayers()[0];
         Player player2 = game.getGamePlayers()[1];
 
-        //player1.teleport(first);
-        //player2.teleport(second);
+        player1.teleport(first);
+        player2.teleport(second);
 
         for(Player gamePlayers:game.getGamePlayers()){
             ChatUtils.msg(gamePlayers, "&aMatch has been found.");
