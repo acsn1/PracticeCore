@@ -23,9 +23,10 @@ public class onInteractListener implements Listener {
         ItemStack item = event.getItem();
 
         if(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
-            if(item.getType().equals(Material.STONE_SWORD)){
+            if(p.getItemInHand().getType().equals(Material.STONE_SWORD)){
                 core.gameSelectGUI.openGUI(p);
                 p.playSound(p.getLocation(),Sound.ANVIL_LAND, 3, 1);
+                event.setCancelled(true);
             }
         }
 

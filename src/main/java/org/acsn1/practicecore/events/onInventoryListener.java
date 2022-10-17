@@ -20,10 +20,15 @@ public class onInventoryListener implements Listener {
     @EventHandler
     public void onClick(InventoryClickEvent event){
         if(!(event.getWhoClicked() instanceof Player)) return;
+        if(event.getCurrentItem() == null) return;
 
         Player p = (Player) event.getWhoClicked();
         Inventory inv = event.getClickedInventory();
         ItemStack item = event.getCurrentItem();
+
+
+
+            
         if(inv.getTitle().equals(core.gameSelectGUI.getInv().getTitle())){
             if(item.getType().equals(Material.DIAMOND)){
                 core.getQueueManager().addToQueue(p, core.getKitManager().getKit("NoDebuff"));

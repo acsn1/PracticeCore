@@ -18,7 +18,6 @@ public class onJoinListener implements Listener {
     public void onJoin(PlayerLoginEvent event){
         Profile profile = new Profile(event.getPlayer().getName(), event.getPlayer().getUniqueId(), new Stats());
         core.getProfileManager().retrieveProfile(profile);
-        System.out.println(core.getArenaManager().getRandomArena());
 
     }
 
