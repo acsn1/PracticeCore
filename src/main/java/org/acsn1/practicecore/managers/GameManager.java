@@ -17,15 +17,15 @@ public class GameManager {
         GAMES = new HashSet<>();
     }
 
-    public static long generateGameId(){
+    public static String generateGameId(){
         String chars = "abcdefghijklmnopqrstuvwxyz0123456789";
         String out = "";
 
+
         do {
-            out += chars.indexOf(ThreadLocalRandom.current().nextInt(chars.length()));
-        } while(out.length() < 7);
-        long id = Long.parseLong(out);
-        return id;
+            out += chars.charAt(ThreadLocalRandom.current().nextInt(0, chars.length()-1));
+        } while(out.length() <= 7);
+        return out;
     }
 
     public void addGame(Game game){
@@ -43,12 +43,12 @@ public class GameManager {
         Player player1 = game.getGamePlayers()[0];
         Player player2 = game.getGamePlayers()[1];
 
-        player1.teleport(first);
-        player2.teleport(second);
+        //player1.teleport(first);
+        //player2.teleport(second);
 
         for(Player gamePlayers:game.getGamePlayers()){
-            ChatUtils.msg(gamePlayers, "&Match has been found.");
-            ChatUtils.msg(gamePlayers, "&cOpponent: &f" + gamePlayers);
+            ChatUtils.msg(gamePlayers, "&aMatch has been found.");
+            ChatUtils.msg(gamePlayers, "&cOpponent: &f" + gamePlayers.getName());
         }
 
 
@@ -67,11 +67,14 @@ public class GameManager {
 
     public void deleteGame(Game game, Player winner){
         if(!gameExists(game)) return;
+
         GAMES.remove(game);
 
         //Spawn TP gamePlayers.
         //Reset inventories
+        //reset arenas/games
         game.getGameArena().setInUse(false);
+        game.setGameEnded(System.currentTimeMillis());
 
         Player player1 = game.getGamePlayers()[0];
         Player loser;
@@ -90,7 +93,7 @@ public class GameManager {
 
     public Game getGame(long id){
         for(Game live_games:GAMES){
-            if(live_games.getId() == id){
+            if(live_games.getId().equals(id)){
                 return live_games;
             }
         }

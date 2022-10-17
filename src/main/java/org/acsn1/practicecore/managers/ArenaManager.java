@@ -55,6 +55,18 @@ public class ArenaManager {
 
     }
 
+    public boolean isReady(Arena arena){
+        //first-check
+        if(isOccupied(arena)) return false;
+
+        //other-checks
+        if(arena.getLocation() == null) return false;
+        if(arena.getFirst() == null) return false;
+        if(arena.getSecond() == null) return false;
+
+        return true;
+    }
+
     public void createArena(Arena arena){
         if(ARENAS.contains(arena)) ChatUtils.log("&cArena " + arena.getName() + " exists.");
 
@@ -104,6 +116,10 @@ public class ArenaManager {
 
         return (Arena) ARENAS.toArray()[random];
 
+    }
+
+    public Set<Arena> getArenas(){
+        return ARENAS;
     }
 
 

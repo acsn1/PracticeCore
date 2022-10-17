@@ -1,6 +1,8 @@
 package org.acsn1.practicecore.managers;
 
 import org.acsn1.practicecore.PracticeCore;
+import org.acsn1.practicecore.events.onInteractListener;
+import org.acsn1.practicecore.events.onInventoryListener;
 import org.acsn1.practicecore.events.onJoinListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -19,6 +21,8 @@ public class EventManager {
         PluginManager pm = Bukkit.getPluginManager();
 
         pm.registerEvents(new onJoinListener(core), core);
+        pm.registerEvents(new onInteractListener(core), core);
+        pm.registerEvents(new onInventoryListener(core), core);
     }
 
 
