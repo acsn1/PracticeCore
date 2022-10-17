@@ -34,14 +34,18 @@ public class QueueManager {
 
         for (GameQueue gameQueue : getGameQueues()) {
             Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(core, () -> {
-                if (gameQueue.getQueuedPlayers().size() >= 2) {
-                    i++;
 
-                    if (i % gameQueue.getQueuedPlayers().size() == 0) {
+
+                if (gameQueue.getQueuedPlayers().size() >= 2) {
+
+                    i++;
+                    if (i==5) {
                         for (Player queuedPlayers : gameQueue.getQueuedPlayers()) {
                             ChatUtils.msg(queuedPlayers, "&7Searching for an available arena.");
+                            i=0;
                         }
                     }
+
 
                     Arena arena = core.getArenaManager().getRandomArena();
 
