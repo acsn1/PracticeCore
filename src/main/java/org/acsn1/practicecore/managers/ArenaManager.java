@@ -2,6 +2,7 @@ package org.acsn1.practicecore.managers;
 
 import org.acsn1.practicecore.PracticeCore;
 import org.acsn1.practicecore.objects.Arena;
+import org.acsn1.practicecore.utils.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -21,6 +22,7 @@ public class ArenaManager {
     private PracticeCore core;
     public ArenaManager(PracticeCore core){
         this.core = core;
+        this.loadArenas();
     }
 
     private static Set<Arena> ARENAS = new HashSet<>();
@@ -32,7 +34,7 @@ public class ArenaManager {
         file = new File(core.getDataFolder() + "/arenas");
         if(!(file.exists())) file.mkdirs();
 
-        if(file.isDirectory() && file.length() > 0){
+        if(file.isDirectory()){
         for(File arenas : file.listFiles()) {
             if (arenas.exists()) {
                 config = YamlConfiguration.loadConfiguration(arenas);
@@ -50,12 +52,12 @@ public class ArenaManager {
             }
         }
         //throw msg
-        Bukkit.getLogger().log(Level.FINE, "All arenas were loaded successfully.");
+        ChatUtils.log("Loaded all arenas successfully.");
 
     }
 
     public void createArena(Arena arena){
-        if(ARENAS.contains(arena)) Bukkit.getLogger().warning("Arena " + arena.getName() + " already exists.");
+        if(ARENAS.contains(arena)) ChatUtils.log("&cArena " + arena.getName() + " exists.");
 
         ARENAS.add(arena);
         saveArena(arena);
@@ -76,7 +78,7 @@ public class ArenaManager {
         try{
             config.save(file);
         }catch(Exception ex){
-            Bukkit.getLogger().warning("Could not save arena " + arena.getName() + ".");
+            ChatUtils.log("Could not save arena " + arena.getName() + ".");
             ex.printStackTrace();
         }
 
@@ -87,7 +89,7 @@ public class ArenaManager {
     }
 
     public void deleteArena(Arena arena){
-        if(ARENAS.contains(arena)) Bukkit.getLogger().warning("Arena " + arena.getName() + " does not exist.");
+        if(ARENAS.contains(arena)) ChatUtils.log("Arena " + arena.getName() + " does not exist.");
 
         ARENAS.remove(arena);
 

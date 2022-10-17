@@ -1,9 +1,16 @@
 package org.acsn1.practicecore.objects;
 
-public class Stats {
+import java.io.Serializable;
+
+public class Stats implements Serializable {
 
     private int wins;
     private int loses;
+
+    public Stats(){
+        this.wins = 0;
+        this.loses = 0;
+    }
 
     public Stats(int wins, int loses){
         this.wins = wins;

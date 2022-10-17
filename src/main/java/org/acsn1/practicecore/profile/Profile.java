@@ -10,14 +10,12 @@ public class Profile implements Serializable {
     private String name;
     private UUID uuid;
     private Stats stats;
-    private long lastJoin;
 
-    public Profile(String name, UUID uuid, Stats stats, long lastJoin){
+    public Profile(String name, UUID uuid, Stats stats){
 
         this.name = name;
         this.uuid = uuid;
         this.stats = stats;
-        this.lastJoin = lastJoin;
 
     }
 
@@ -45,11 +43,8 @@ public class Profile implements Serializable {
         this.stats = stats;
     }
 
-    public long getLastJoin() {
-        return lastJoin;
-    }
-
-    public void setLastJoin(long lastJoin) {
-        this.lastJoin = lastJoin;
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

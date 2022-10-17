@@ -2,6 +2,7 @@ package org.acsn1.practicecore.managers;
 
 import org.acsn1.practicecore.PracticeCore;
 import org.acsn1.practicecore.profile.Profile;
+import org.acsn1.practicecore.utils.ChatUtils;
 import org.acsn1.practicecore.utils.ObjectUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -13,7 +14,7 @@ import java.util.UUID;
 
 public class ProfileManager {
 
-    private Set<Profile> PROFILES = new HashSet<>();
+    public static Set<Profile> PROFILES = new HashSet<>();
     private File file;
     private YamlConfiguration config;
 
@@ -21,6 +22,7 @@ public class ProfileManager {
 
     public ProfileManager(PracticeCore core){
         this.core = core;
+        this.loadProfiles();
     }
 
     public void loadProfiles(){
@@ -30,42 +32,52 @@ public class ProfileManager {
 
         config = YamlConfiguration.loadConfiguration(file);
 
-        if(file.isDirectory() && file.length() < 0) return;
         Profile p;
 
         for(File profiles:file.listFiles()){
-            p = (Profile) ObjectUtils.deserializeObject(profiles.getName().replaceFirst(".yml", ""));
+            p = (Profile) ObjectUtils.deserializeObject(profiles.getName().replaceFirst(".profile", ""));
             PROFILES.add(p);
         }
-        Bukkit.getLogger().fine("Successfully loaded all profiles.");
+
+        ChatUtils.log("Loaded all profiles successfully.");
+
 
     }
 
-    public void createProfile(Profile profile){
+    public void retrieveProfile(Profile profile){
 
-        if(PROFILES.contains(profile)) return;
+        if(profileExists(profile.getUuid())) return;
+            PROFILES.add(profile);
+            ObjectUtils.serializeObject(profile, profile.getUuid().toString());
+        }
 
-        PROFILES.add(profile);
+    public boolean profileExists(UUID uuid){
+        for(Profile profiles:PROFILES){
+            if(profiles.getUuid().equals(uuid)){
+                return true;
+            } else{
+                return false;
+            }
+        }
 
-        ObjectUtils.serializeObject(profile, profile.getUuid().toString());
+        return false;
 
     }
 
     public Profile getProfile(UUID uuid){
         for(Profile profiles:PROFILES){
-            if(profiles.getUuid() == uuid){
+            if(profiles.getUuid().equals(uuid)){
                 return profiles;
             } else{
                 return null;
             }
         }
-
         return null;
     }
 
     public Profile getProfile(String name){
         for(Profile profiles:PROFILES){
-            if(profiles.getName() == name){
+            if(profiles.getName().equals(name)){
                 return profiles;
             } else{
                 return null;
@@ -83,7 +95,7 @@ public class ProfileManager {
         if(file.exists()) file.delete(); file.mkdirs();
         file.mkdirs();
 
-        Bukkit.getLogger().fine("Successfully wiped all the profiles.");
+        ChatUtils.log("Wiped all profiles data successfully.");
     }
 
 }

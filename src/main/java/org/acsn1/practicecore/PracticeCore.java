@@ -1,18 +1,25 @@
 package org.acsn1.practicecore;
 
-import org.acsn1.practicecore.managers.ArenaManager;
-import org.acsn1.practicecore.objects.Arena;
+import org.acsn1.practicecore.managers.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
 public final class PracticeCore extends JavaPlugin {
 
-    public ArenaManager arenaManager;
+    private ArenaManager arenaManager;
+    private KitManager kitManager;
+    private EventManager eventManager;
+    private CommandManager commandManager;
+    private ProfileManager profileManager;
 
     @Override
     public void onEnable() {
+
         arenaManager = new ArenaManager(this);
-        arenaManager.loadArenas();
+        kitManager = new KitManager();
+        eventManager = new EventManager(this);
+        commandManager = new CommandManager();
+        profileManager = new ProfileManager(this);
 
 
     }
@@ -22,15 +29,23 @@ public final class PracticeCore extends JavaPlugin {
 
     }
 
-    private void registerCommands(){
-
+    public ArenaManager getArenaManager() {
+        return arenaManager;
     }
 
-    private void registerEvents(){
-
+    public KitManager getKitManager() {
+        return kitManager;
     }
 
+    public EventManager getEventManager() {
+        return eventManager;
+    }
 
+    public CommandManager getCommandManager() {
+        return commandManager;
+    }
 
-
+    public ProfileManager getProfileManager() {
+        return profileManager;
+    }
 }
