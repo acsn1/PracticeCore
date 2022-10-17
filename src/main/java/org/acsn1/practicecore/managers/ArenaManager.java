@@ -44,10 +44,9 @@ public class ArenaManager {
                 Location first = (Location) config.get("arena.first");
                 Location second = (Location) config.get("arena.second");
                 boolean isBuildable = config.getBoolean("arena.isBuildable");
-                Player[] players = new Player[2];
 
 
-                ARENAS.add(new Arena(name, location, first, second, players, isBuildable));
+                ARENAS.add(new Arena(name, location, first, second, isBuildable, false));
                 }
             }
         }
@@ -85,7 +84,7 @@ public class ArenaManager {
     }
 
     public boolean isOccupied(Arena arena){
-        return (arena.getPlayers()==null ? false : true);
+        return arena.isInUse();
     }
 
     public void deleteArena(Arena arena){

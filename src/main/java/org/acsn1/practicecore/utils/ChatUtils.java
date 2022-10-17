@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 
 public class ChatUtils {
 
-    private static String prefix = "&c&lPractice &8&l> ";
-    
+    private static String prefix = "&c&lPractice &8&l> &a";
+
     public static String color(String msg){
         return ChatColor.translateAlternateColorCodes('&', msg);
     }

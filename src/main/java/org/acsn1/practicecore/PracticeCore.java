@@ -11,6 +11,8 @@ public final class PracticeCore extends JavaPlugin {
     private EventManager eventManager;
     private CommandManager commandManager;
     private ProfileManager profileManager;
+    private QueueManager queueManager;
+    private GameManager gameManager;
 
     @Override
     public void onEnable() {
@@ -18,8 +20,10 @@ public final class PracticeCore extends JavaPlugin {
         arenaManager = new ArenaManager(this);
         kitManager = new KitManager();
         eventManager = new EventManager(this);
-        commandManager = new CommandManager();
+        commandManager = new CommandManager(this);
         profileManager = new ProfileManager(this);
+        queueManager = new QueueManager(this);
+        gameManager = new GameManager(this);
 
 
     }

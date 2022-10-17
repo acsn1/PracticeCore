@@ -9,18 +9,26 @@ public class Arena {
     private Location location;
     private Location first;
     private Location second;
-    private Player[] players;
     private boolean isBuildable;
+    private boolean isInUse;
 
-    public Arena(String name, Location location, Location first, Location second, Player[] players, boolean isBuildable){
+    public Arena(String name, Location location, Location first, Location second, boolean isBuildable
+    ,boolean isInUse){
         this.name = name;
         this.location = location;
         this.first = first;
         this.second = second;
-        this.players = players;
         this.isBuildable = isBuildable;
+        this.isInUse = isInUse;
     }
 
+    public boolean isInUse() {
+        return isInUse;
+    }
+
+    public void setInUse(boolean inUse) {
+        isInUse = inUse;
+    }
 
     public String getName() {
         return name;
@@ -38,13 +46,6 @@ public class Arena {
         this.location = location;
     }
 
-    public Player[] getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(Player[] players) {
-        this.players = players;
-    }
 
     public boolean isBuildable() {
         return isBuildable;
