@@ -46,6 +46,10 @@ public class GameManager {
         player1.teleport(first);
         player2.teleport(second);
 
+        /*not tested loop, might have to do:
+        ChatUtils.msg(player1, msg);
+        ChatUtils.msg(player2, msg);
+        */
         for(Player gamePlayers:game.getGamePlayers()){
             ChatUtils.msg(gamePlayers, "&aMatch has been found.");
             ChatUtils.msg(gamePlayers, "&cOpponent: &f" + gamePlayers.getName());
