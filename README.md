@@ -1,5 +1,5 @@
 ## Practice Core
-This is a sample practice core I started making in **10/16/2022** for educational/github purposes.
+This is a sample practice core I started making in **10/16/2022** for educational/github purposes. Practice core is a minecraft plugin in which players are able to click on an item to join a queue with other players and duel them in a 1v1.
 
 ## 🔧 Programming Language & Tools
 Java was used to compile this minecraft plugin using IntelliJ IDE.
